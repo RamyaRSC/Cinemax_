@@ -1,0 +1,80 @@
+.home {
+    background-color: var(--primary--color);
+}
+
+.movie{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../../assets/walle1.jpg");
+    background-size:cover;
+}
+
+.info {
+    width: 500px;
+    color: var(--primary--color);
+    display: flex;
+    flex-direction: column;
+    margin-left: 90px;
+    font-weight: 400;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.controls button{
+    color: var(--primary--color);
+    border: none;
+    border-radius: 12px;
+    padding: 7px 25px 7px 25px;
+    font-weight: 400;
+    background-color: var(--secondary--color);
+}
+
+.moviePoster p {
+    padding: 1rem 3rem 0rem;
+    color: var(--secondary--color);
+    font-weight: 500;
+}
+
+.sliderContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rem 1rem;
+}
+
+.sliderContainer i{
+    cursor: pointer;
+    color: var(--secondary--color)
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
+
+.slider::-webkit-scrollbar{
+    display: none;
+}
+
+.moviePoster img{
+    height: 40vh;
+    width: 20%;
+    padding: 1rem;
+    transition: transform 0.2s ease-in-out;
+    border-radius: 20px;
+}
+
+.moviePoster img:hover {
+    transform: scale(1.1);
+}
