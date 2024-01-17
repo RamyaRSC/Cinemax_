@@ -69,12 +69,27 @@
 
 .moviePoster img{
     height: 40vh;
-    width: 20%;
+    width: 240px;
     padding: 1rem;
     transition: transform 0.2s ease-in-out;
     border-radius: 20px;
+
 }
 
 .moviePoster img:hover {
     transform: scale(1.1);
+}
+
+@media only screen and (max-width: 600px) {
+    .info {
+        /* display: flex;
+        align-items: center; */
+        margin-left: 0px;
+        padding: 10px
+    }
+
+    .movie {
+        flex-wrap: wrap;
+        align-content: center;
+    }
 }
