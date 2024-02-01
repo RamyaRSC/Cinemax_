@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import './index.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -11,7 +12,12 @@ import NoPage from './pages/NoPage'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <Auth0Provider
+    domain="dev-s0emoqiwd2aaxvxe.us.auth0.com"
+    clientId="UIHytc0sJWSmXLexuEyWhakGjFBgsNAY"
+    authorizationParams={{
+      redirect_uri: window.location.origin}}>
+    <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/home" element={<Home />} />
@@ -20,5 +26,6 @@ root.render(
       <Route path="/register" element={<Register />} />
       <Route path="*" element={<NoPage />} />
     </Routes>
-  </BrowserRouter>
+    </BrowserRouter>
+  </Auth0Provider>,
 );
