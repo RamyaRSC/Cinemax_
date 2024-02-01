@@ -1,11 +1,16 @@
 import React from 'react';
+import Navbar from "../../components/Navbar/Navbar";
 import { useForm, ValidationError } from '@formspree/react';
-function ContactForm() {
+
+
+export default function ContactForm() {
   const [state, handleSubmit] = useForm("mayrqagp");
   if (state.succeeded) {
       return <p>Thanks for joining!</p>;
   }
   return (
+    <div>
+      <Navbar />
       <form onSubmit={handleSubmit}>
       <label htmlFor="email">
         Email Address
@@ -33,11 +38,7 @@ function ContactForm() {
         Submit
       </button>
     </form>
+    </div>  
+    
   );
 }
-function App() {
-  return (
-    <ContactForm />
-  );
-}
-export default App;

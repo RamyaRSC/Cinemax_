@@ -3,7 +3,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css'; //Import the Font Awesom
 import './NavbarStyles.css';
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 const Navbar = () => {
   const [nav, setNav] = useState(false)
   const handleNav = () => setNav(!nav)

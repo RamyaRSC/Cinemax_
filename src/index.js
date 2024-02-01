@@ -9,6 +9,7 @@ import About from './pages/About'
 import Movie from './pages/Movie'
 import Register from './pages/Register/Register.js'
 import NoPage from './pages/NoPage'
+import Contact from './pages/Contact/Contact.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
       <Route path="/about" element={<About />} />
       <Route path="/movie" element={<Movie />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<NoPage />} />
     </Routes>
     </BrowserRouter>
