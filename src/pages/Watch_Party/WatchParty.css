@@ -1,0 +1,25 @@
+.watchPartyContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px;
+}
+
+.img {
+    /* background-color: blue; */
+    height: 70%;
+    width: max-content;
+}
+
+.watchParty {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    height: 200px;
+    background-color: var(--secondary--color);
+    
+}
+
+.img {
+    
+}

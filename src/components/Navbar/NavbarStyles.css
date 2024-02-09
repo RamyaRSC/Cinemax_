@@ -86,6 +86,32 @@ ul {
     display: none;
 }
 
+.profile{
+    display: flex;
+    column-gap: 1rem;
+}
+
+.sidePanelbg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.566);
+    z-index: 10;
+}
+
+.sidePanel {
+    position: absolute;
+    left: 80%;
+    top: 0;
+    width: 20%;
+    height: 100vh;
+    background-color: var(--secondary--color);
+    margin: 5px;
+    z-index: 12;
+}
+
 @media only screen and (max-width: 800px) {
     .search-container:hover > .search-input{
         width: 200px;

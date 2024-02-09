@@ -1,18 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; //Import the Font Awesome CSS
 import './NavbarStyles.css';
-
+import { checkUser, logOutUser, getUserData } from '../../firebase';
 
 const Navbar = () => {
+  const [signInChecker, setSignInChecker] = useState(false)
+  const [userName, setUserName] = useState('')
   const [nav, setNav] = useState(false)
   const handleNav = () => setNav(!nav)
+
+
+  useEffect(() => {
+    checkUser(setSignInChecker)
+    getUserData(setUserName)
+  }, [])
 
   return (
     <div className='navbar'>
       <div className='navbarContainer'>
         <div className='rightSide'>
           <div className='logo'>
-              <h1>LOGO</h1>
+            <h1>LOGO</h1>
           </div>
 
           <div className="search-container">
@@ -24,10 +32,13 @@ const Navbar = () => {
         </div>
 
         <ul className={nav ? 'nav-menu active' : 'nav-menu'}>
-            <li><a href='/home'>Home</a></li>
-            <li><a href='/movie'>Movie</a></li>
-            <li><a href='/about'>About</a></li>
-            <li><a href='/register'>SignIn</a></li>
+          <li><a href='/home'>Home</a></li>
+          <li><a href='/movie'>Movie</a></li>
+          <li><a href='/TvShow'>TV Show</a></li>
+          <li><a href='/watchparty'>Watch Party</a></li>
+          <li>
+            {signInChecker ? <Profile userName={userName}/> : <a href='/register'>SignIn</a>}
+          </li>
         </ul>
 
         <div className="menu-bars" onClick={handleNav}>
@@ -39,3 +50,21 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+function Profile({userName}) {
+  const [profileButtonClicked, setProfileButtonClicked] = useState(false)
+
+  return(
+    <div className="profile">
+      <div className='userName'>{userName}</div>
+      <i class="fa fa-user" aria-hidden="true" onClick={() => setProfileButtonClicked(true)}></i>
+      {profileButtonClicked ? <div className='sidePanelbg'onClick={() => setProfileButtonClicked(false)}/> : ''}
+      {profileButtonClicked ? 
+      <div className='sidePanel'>
+        <div className='userName'>{userName}</div>
+        <button onClick={()=> logOutUser()}>Log Out</button>
+      </div> 
+      : ''}
+    </div>
+  )
+}

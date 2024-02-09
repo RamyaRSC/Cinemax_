@@ -36,8 +36,8 @@
     background-color: var(--secondary--color);
 }
 
-.moviePoster p {
-    padding: 1rem 3rem 0rem;
+.moviePosterHome p {
+    padding: 1rem 3.5rem 0rem;
     color: var(--secondary--color);
     font-weight: 500;
 }
@@ -67,7 +67,7 @@
     display: none;
 }
 
-.moviePoster img{
+.moviePosterHome img{
     height: 40vh;
     width: 240px;
     padding: 1rem;
@@ -76,7 +76,7 @@
 
 }
 
-.moviePoster img:hover {
+.moviePosterHome img:hover {
     transform: scale(1.1);
 }
 
