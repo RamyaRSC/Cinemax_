@@ -79,17 +79,17 @@ export default function PlayMovie() {
                     </div>
                 </div>
 
-                <h2>Video IDs:</h2>
+                {/* <h2>Video IDs:</h2>
                 <ul>
-                    {/* {videoIds.map(videoId => (
+                    {videoIds.map(videoId => (
                         <li key={videoId}>{videoId}</li>
-                    ))} */}
-                </ul>
+                    ))}
+                </ul> */}
 
-                <video className="videoPlayer" controls poster={`https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}`}>
+                {/* <video className="videoPlayer" controls poster={`https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}`}>
                         <source src={videoUrl} type="video/mp4" />
                         Your browser does not support the video tag.
-                </video>
+                </video> */}
 
             </div>
             </>
