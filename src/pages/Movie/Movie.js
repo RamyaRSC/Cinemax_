@@ -1,50 +1,28 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import './Movie.css';
+import { useNavigate } from "react-router-dom";
+import { handleSlide, getMovie } from "../Utils";
+// import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 export default function Movie(){
-    const [animatedMovies, setAnimatedMovies] = useState ([])
-    const [actionMovies, setActionMovies] = useState([])
-    const [comedyMovies, setComedyMovies] = useState([])
-
-    const [scrollPositions, setScrollPositions] = useState({
-        Animated: 0,
-        Comedy: 0,
-        Action: 0
-    });
-
-    const handleSlide = (genre, direction) => {
-        const container = document.querySelector(`.${genre} .slider`); // Select the slider container using the provided genre class
-        const scrollAmount = 500; //amount by which to scroll
-    
-        container?.scrollTo({
-            left: (container.scrollLeft + (direction === "left" ? -1 : 1) * scrollAmount), // Calculate the new scrollLeft position based on the direction
-            behavior: "smooth"
-        });
-    
-        container && setScrollPositions(prevScrollPositions => ({
-            // Update the scroll position in the state based on the current genre
-            ...prevScrollPositions,
-            [genre]: container.scrollLeft
-        }));
-    };
+    const [adventureMovies, setAdventureMovies] = useState ([]);
+    const [horrorMovies, setHorrorMovies] = useState([]);
+    const [documentryMovies, setDocumentryMovies] = useState([]);
+    const navigate = useNavigate()
+    // const storage = getStorage();
 
     useEffect(() => {
-        const getMovie = async (genre, setMovieList) => {
-            try {
-                const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=55eeda8279baa495342e20191faf8cf7&with_genres=${genre}`);
-                const data = await response.json();
-                setMovieList(data.results);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
+        const fetchMovie = async () => {
+            const adventureMoviesData = await getMovie(12);
+            setAdventureMovies(adventureMoviesData);
+            const horrorMoviesData = await getMovie(27);
+            setHorrorMovies(horrorMoviesData);
+            const documentryMoviesData = await getMovie(99);
+            setDocumentryMovies(documentryMoviesData);
         };
-        getMovie(12, setAnimatedMovies); // Adventure Movies (Genre ID: 12)
-        getMovie(27, setComedyMovies);  // Horror Movies (Genre ID: 27)
-        getMovie(99, setActionMovies); // Documentry Movies (Genre ID: 99)
-
-        getMovie();
-    },[])
+        fetchMovie();
+    },[]);
 
     const renderMovieRow = (movies, genre) => (
         <div className={`moviePoster ${genre}`} key={genre}>
@@ -53,7 +31,7 @@ export default function Movie(){
                 <i className="fa fa-chevron-left fa-2x" aria-hidden="true" onClick={() => handleSlide (genre, "left")}></i>
                 <div className="slider">
                     {movies.map(movie => (
-                        <img key={movie.id} className="poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.id} />
+                        <img key={movie.id} className="poster" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.id} onClick={() => navigate(`/home/${movie.id}`)}/>
                     ))}
                 </div>
                 <i className="fa fa-chevron-right fa-2x" aria-hidden="true" onClick={() => handleSlide(genre, "right")} />
@@ -64,9 +42,9 @@ export default function Movie(){
     return (
         <>
             <Navbar />
-            {renderMovieRow(animatedMovies, "Adventure")}
-            {renderMovieRow(comedyMovies, "Horror")}
-            {renderMovieRow(actionMovies, "Documentry")}
+            {renderMovieRow(adventureMovies, "Adventure")}
+            {renderMovieRow(horrorMovies, "Horror")}
+            {renderMovieRow(documentryMovies, "Documentry")}
         </>
     )
 }

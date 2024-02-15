@@ -20,9 +20,7 @@ export default function Register(){
     return (
       signUp ? <SignUp setSignUp={setSignUp} /> : <SignIn setSignUp={setSignUp} />
     );
-  }
-
-  
+  }  
 }
 
 function SignIn({setSignUp}) {

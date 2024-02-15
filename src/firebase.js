@@ -2,7 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import {getDatabase} from 'firebase/database'
+import { getDatabase } from 'firebase/database'
+
+//helllll
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,6 +28,13 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
 const database = getDatabase(app);
+
+// Get Firestore and Storage instances hellll
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+export { app, db, storage };
+
 
 export async function createUser(userName, email, password) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)

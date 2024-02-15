@@ -1,0 +1,49 @@
+body {
+    color: wheat;
+    margin: 0;
+    padding: 0;
+}
+
+.videoPlayerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.videoPlayerBG {
+    width: 98.5vw;
+    height: 400px;
+    background-size: cover;
+    position: absolute;
+    filter: blur(4px);
+    object-fit: cover;
+    z-index: -1;
+}
+
+.videoPlayer {
+    height: 400px;
+    object-fit: cover;
+}
+
+.videoInfoContainer {
+    background-color: var(--primary--color);
+    display: flex;
+    padding: 20px
+}
+
+.videoPoster {
+    height: 300px;
+    width: 200px;
+    margin-right: 20px;
+}
+
+.videoInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.videoInfo p{
+    padding: 5px
+}

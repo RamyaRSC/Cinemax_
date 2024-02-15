@@ -1,34 +1,15 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import './TvShow.css';
+import { useNavigate } from "react-router-dom";
+import { handleSlide } from "../Utils";
 
 export default function TvShow(){
     const [tvShowList, setTvShowList] = useState([])
-    const [animatedTvShows, setAnimatedTvShows] = useState ([])
-    const [comedyTvShows, setComedyTvShows] = useState([])
-    const [crimeTvShows, setCrimeTvShows] = useState([])
-
-    const [scrollPositions, setScrollPositions] = useState({
-        Animated: 0,
-        Comedy: 0,
-        Action: 0
-    });
-
-    const handleSlide = (genre, direction) => {
-        const container = document.querySelector(`.${genre} .slider`); // Select the slider container using the provided genre class
-        const scrollAmount = 500; //amount by which to scroll
-    
-        container?.scrollTo({
-            left: (container.scrollLeft + (direction === "left" ? -1 : 1) * scrollAmount), // Calculate the new scrollLeft position based on the direction
-            behavior: "smooth"
-        });
-    
-        container && setScrollPositions(prevScrollPositions => ({
-            // Update the scroll position in the state based on the current genre
-            ...prevScrollPositions,
-            [genre]: container.scrollLeft
-        }));
-    };
+    const [mysteryTvShows, setMysteryTvShows] = useState ([])
+    const [realityTvShows, setRealityTvShows] = useState([])
+    const [dramaTvShows, setDramaTvShows] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getTvShow = async (genre, setTvShowList) => {
@@ -40,16 +21,10 @@ export default function TvShow(){
                 console.error("Error fetching data:", error);
             }
         };
-
-        // Mystery TvShows (Genre ID: 16)
-        getTvShow(9648, setAnimatedTvShows);
-
-        // Reakity TvShows (Genre ID: 35)
-        getTvShow(10764, setComedyTvShows);
-
-        // Drama TvShows (Genre ID: 28)
-        getTvShow(18, setCrimeTvShows);
-
+        
+        getTvShow(9648, setMysteryTvShows); // Mystery TvShows (Genre ID: 16)
+        getTvShow(10764, setRealityTvShows); // Reality TvShows (Genre ID: 35)
+        getTvShow(18, setDramaTvShows); // Drama TvShows (Genre ID: 28)
         // getTvShow();
     },[])
 
@@ -60,9 +35,9 @@ export default function TvShow(){
             <p>{genre}</p>
             <div className="sliderContainer">
                 <i className="fa fa-chevron-left fa-2x" aria-hidden="true" onClick={() => handleSlide(genre, "left")}></i>
-                <div className="slider" style={{ scrollLeft: scrollPositions[genre] }}>
+                <div className="slider">
                     {tvShows.map(tvShow => (
-                        <img key={tvShow.id} className="poster" src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`} alt={tvShow.id} />
+                        <img key={tvShow.id} className="poster" src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`} alt={tvShow.id} onClick={() => navigate(`/home/${tvShow.id}`)}/>
                     ))}
                 </div>
                 <i className="fa fa-chevron-right fa-2x" aria-hidden="true" onClick={() => handleSlide(genre, "right")}></i>
@@ -73,9 +48,9 @@ export default function TvShow(){
     return(
         <>
             <Navbar />
-            {renderTvShowRow(animatedTvShows, "Animated")}
-            {renderTvShowRow(comedyTvShows, "Comedy")}
-            {renderTvShowRow(crimeTvShows, "Action")}
+            {renderTvShowRow(mysteryTvShows, "Animated")}
+            {renderTvShowRow(realityTvShows, "Comedy")}
+            {renderTvShowRow(dramaTvShows, "Action")}
         </>
     )
 }
