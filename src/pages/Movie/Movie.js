@@ -3,23 +3,30 @@ import Navbar from "../../components/Navbar/Navbar";
 import './Movie.css';
 import { useNavigate } from "react-router-dom";
 import { handleSlide, getMovie } from "../Utils";
-// import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import FadeLoader from 'react-spinners/FadeLoader';
 
 export default function Movie(){
     const [adventureMovies, setAdventureMovies] = useState ([]);
     const [horrorMovies, setHorrorMovies] = useState([]);
     const [documentryMovies, setDocumentryMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
-    // const storage = getStorage();
 
     useEffect(() => {
         const fetchMovie = async () => {
-            const adventureMoviesData = await getMovie(12);
-            setAdventureMovies(adventureMoviesData);
-            const horrorMoviesData = await getMovie(27);
-            setHorrorMovies(horrorMoviesData);
-            const documentryMoviesData = await getMovie(99);
-            setDocumentryMovies(documentryMoviesData);
+            try {
+                const adventureMoviesData = await getMovie(12);
+                setAdventureMovies(adventureMoviesData);
+                const horrorMoviesData = await getMovie(27);
+                setHorrorMovies(horrorMoviesData);
+                const documentryMoviesData = await getMovie(99);
+                setDocumentryMovies(documentryMoviesData);
+                setLoading(false); // Set loading to false after fetching data
+            } catch (error) {
+                console.error("Error fetching movies:", error);
+                setLoading(false); // Set loading to false in case of error
+            }
+            
         };
         fetchMovie();
     },[]);
@@ -42,9 +49,17 @@ export default function Movie(){
     return (
         <>
             <Navbar />
+            {loading ? ( // Display loader if loading is true
+                <div className="loader-container">
+                    <FadeLoader color="#fff" size={80}/>
+                </div>
+            ) : (
+            <>
             {renderMovieRow(adventureMovies, "Adventure")}
             {renderMovieRow(horrorMovies, "Horror")}
             {renderMovieRow(documentryMovies, "Documentry")}
+            </>
+            )}
         </>
     )
 }

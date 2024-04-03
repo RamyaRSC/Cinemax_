@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from "../../components/Navbar/Navbar";
 import './PlayMovie.css'
-
-import firebase from 'firebase/app';
-import { db } from '../../firebase'; 
+import { RingLoader } from 'react-spinners/RingLoader';
+// import 'react-spinners/RingLoader.css';
 
 export default function PlayMovie() {
     const [movieDetail, setMovieDetail] = useState();
-    const {id} = useParams()
-    console.log(id)
-    const [videoUrl, setVideoUrl] = useState([]);  //hellll
-    //helllll
-    useEffect(() => {
-        const fetchVideoIds = async () => {
-          try {
-            // Access Firestore database
-            // const db = firebase.firestore();
-            // Query the "videos" collection
-            const videosCollection = await db.collection('videos').get();
-            // Extract video IDs from video documents
-            const ids = videosCollection.docs.map(doc => doc.id);
-            // Update component state with video IDs
-            setVideoUrl(ids);
-          } catch (error) {
-            console.error('Error fetching video IDs:', error);
-          }
-        };
-    
-        fetchVideoIds();
-      }, []);
+    const [recommendationDetail, setRecommendationDetail] = useState([]);
+    const navigate = useNavigate()
+    const { id } = useParams();
+    const [loading, setLoading] = useState(true);
+    const [credits, setCredits] = useState(null);
 
     useEffect(() => {
         const getMovie = async (movieID) => {
@@ -49,13 +31,52 @@ export default function PlayMovie() {
         getMovie(id)
     },[id])
 
+    useEffect(() => {
+        const getRecommendations = async (movieID) => {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=55eeda8279baa495342e20191faf8cf7`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();  
+                // console.log(data)
+                setRecommendationDetail(data.results)
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        getRecommendations(id)
+    })
+
+    useEffect(() => {
+        const fetchCredits = async () => {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=55eeda8279baa495342e20191faf8cf7`);
+                const data = await response.json();
+                setCredits(data);
+                setLoading(false);
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setLoading(false);
+            }
+        };
+        fetchCredits()
+    },[id]  )
+
+    const toHoursAndMinutes = (totalMinutes) => {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
+    };
+
+
     if (!movieDetail) {
-        return <div>Loading...</div>; // Show loading indicator while fetching data
+        return <div>Loading...{RingLoader}</div>; // Show loading indicator while fetching data
     } else {
         return (
             <>
             <Navbar />
-            <div>
                 <div className="videoPlayerContainer">
                     <div className="videoPlayerBG" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path})`}}/>
                     <video className="videoPlayer" controls poster={`https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}`}>
@@ -71,27 +92,44 @@ export default function PlayMovie() {
                         <p>{movieDetail.overview}</p>
                         
                         <p>"{movieDetail.tagline}"</p>
-                        <p>Duration: {movieDetail.runtime} mins</p>
+                        <p>Runtime: {toHoursAndMinutes(movieDetail.runtime)}</p>
                         <p>Release Date: {movieDetail.release_date}</p>
                         <p>Popularity: {movieDetail.popularity}</p>
                         <p>Status: {movieDetail.status}</p>
                         <p>Genres: {movieDetail.genres.map(genre => genre.name).join(', ')}</p>
                     </div>
                 </div>
+                
 
-                {/* <h2>Video IDs:</h2>
-                <ul>
-                    {videoIds.map(videoId => (
-                        <li key={videoId}>{videoId}</li>
+                <div className="credits">
+                {credits && (
+                    <div className="creditsList">
+                        <h2>Cast</h2>
+                        <div className="castList">
+                        {credits.cast && credits.cast.map((castMember) => (
+                            <div key={castMember.id} className="castItem">
+                            <img src={`https://image.tmdb.org/t/p/w500/${castMember.profile_path}`} alt={castMember.name} className='castImg'/>
+                            <div className="castName">{castMember.name}</div>
+                            <div className="character">{castMember.character}</div>
+                            </div>
+                        ))}
+                        </div>
+                    </div>
+                )}
+                </div>
+
+                <div className="recommendation">
+                    <h1>More Like This</h1>
+                    <div className="recommendationContainer">
+                    {recommendationDetail.map(movie => (
+                        <React.Fragment key={movie.id}>
+                            {movie.poster_path && (
+                                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className='recommendationImg' onClick={() => navigate(`/home/${movie.id}`)}/>
+                            )}
+                        </React.Fragment>
                     ))}
-                </ul> */}
-
-                {/* <video className="videoPlayer" controls poster={`https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}`}>
-                        <source src={videoUrl} type="video/mp4" />
-                        Your browser does not support the video tag.
-                </video> */}
-
-            </div>
+                    </div>
+                </div>
             </>
         )
     }

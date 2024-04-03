@@ -4,6 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./Register.css";
 import { checkUser, createUser, signInUser } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { GoogleButton } from "react-google-button";
+import { UserAuth } from "../../Context/AuthContext";
 
 export default function Register(){
   const [signInChecker, setSignInChecker] = useState(false)
@@ -32,6 +34,16 @@ function SignIn({setSignUp}) {
     signInUser(email, password)
   }
 
+  const {googleSignIn} = UserAuth();
+
+  const handleGoogleSignIn = async () => {
+    try{
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return(
     <>
       <Navbar />
@@ -50,6 +62,7 @@ function SignIn({setSignUp}) {
             </div>
             
             <button onClick={(e) => handleSubmit(e)}>signin</button>
+            <GoogleButton onClick={handleGoogleSignIn} />
             <p className="message">Not registered? <span onClick={ (e) => setSignUp(true)}>Create an account</span></p>
           </form>
         </div>
@@ -67,6 +80,16 @@ function SignUp({setSignUp}) {
     e.preventDefault()
     await createUser(userName, email, password)
     console.log('user created')
+  }
+
+  const {googleSignIn} = UserAuth();
+
+  const handleGoogleSignIn = async () => {
+    try{
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return(
@@ -91,6 +114,9 @@ function SignUp({setSignUp}) {
             </div>
 
             <button onClick={(e) => handleSubmit(e)}>create</button>
+
+            <GoogleButton onClick={handleGoogleSignIn} />
+
             <p className="message">Already registered? <span onClick={ () => setSignUp(false)}>Sign In</span></p>
           </form>
         </div>

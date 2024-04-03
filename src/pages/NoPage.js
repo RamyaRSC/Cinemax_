@@ -4,7 +4,7 @@ export default function NoPage(){
     return(
         <>
             <Navbar />
-            <h2 style={'color= white'}>Error 404: Not Found</h2>
+            <h2 style={{color:'white'}}>Error 404: Not Found</h2>
         </>
     )
 }

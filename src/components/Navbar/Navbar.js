@@ -1,19 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css'; //Import the Font Awesome CSS
 import './NavbarStyles.css';
+
 import { checkUser, logOutUser, getUserData } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [signInChecker, setSignInChecker] = useState(false)
   const [userName, setUserName] = useState('')
   const [nav, setNav] = useState(false)
+  const [query, setQuery] = useState('');
+  const navigate = useNavigate()
   const handleNav = () => setNav(!nav)
-
 
   useEffect(() => {
     checkUser(setSignInChecker)
     getUserData(setUserName)
   }, [])
+
+  const searchQueryHandler = (event) => {
+    // console.log(event)
+    const inputValue = event.target.value;
+    // console.log(inputValue) //value you are typing in the search bar
+    if (event.key === 'Enter' && inputValue.trim().length>0) {
+      navigate(`/searchResult/${encodeURIComponent(inputValue)}`);
+    }
+  }
 
   return (
     <div className='navbar'>
@@ -24,13 +36,15 @@ const Navbar = () => {
           </div>
 
           <div className="search-container">
-            <input type="text" name="search" placeholder="Search..." className="search-input" />
-              <a href="#" className="search-btn">
-                <i className="fas fa-search"></i>      
+            <input type="text" name="search" placeholder="Search..." value={query} onChange={(e) => setQuery(e.target.value)} onKeyUp={searchQueryHandler} className="search-input" />
+              <a href="/searchResult" title="searchResult" className="search-btn">
+                <i className="fas fa-search"></i>
               </a>
           </div>
         </div>
+        </div>
 
+      <div className='leftSide'>
         <ul className={nav ? 'nav-menu active' : 'nav-menu'}>
           <li><a href='/home'>Home</a></li>
           <li><a href='/movie'>Movie</a></li>

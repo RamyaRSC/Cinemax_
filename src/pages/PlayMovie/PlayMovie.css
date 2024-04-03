@@ -47,3 +47,50 @@ body {
 .videoInfo p{
     padding: 5px
 }
+
+.castList {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+    overflow: auto;
+}
+
+.castList::-webkit-scrollbar{
+    display: none;
+}
+
+.castList .castItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.castList .castImg {
+    height: 180px;
+    width: 185px;
+    border-radius: 50%;
+    margin: 5px;;
+}
+
+.recommendationContainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 15px;
+    justify-content: center;
+    margin: 15px;
+    overflow: hidden;
+}
+
+.recommendationImg {
+    height: 345px;
+    width: 235px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recommendationImg:hover {
+    cursor: pointer;
+}

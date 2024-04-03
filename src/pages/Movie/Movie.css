@@ -39,9 +39,15 @@ body{
     padding: 1rem;
     transition: transform 0.2s ease-in-out;
     border-radius: 20px;
-
 }
 
 .moviePoster img:hover {
     transform: scale(1.1);
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
