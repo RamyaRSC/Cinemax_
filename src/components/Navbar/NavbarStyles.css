@@ -7,7 +7,8 @@
     width: 100%;
     z-index: 10;
     overflow: hidden;
-    background-color: var(--primary--color);
+    background-color: rgba(22, 32, 41, 0.74);
+    align-items: center;
 }
 
 .navbar .navbarContainer {
@@ -24,6 +25,9 @@
 .navbar .logo {
     display: flex;
     align-items: center;
+    column-gap: 0.5rem;
+    font-size: 20px;
+    font-weight: 700;
     margin: 1rem;
     color: var(--secondary--color);
 }
@@ -58,10 +62,16 @@
     color: var(--primary--color);
 }
 
+.navbar .leftSide {
+    display: flex;
+    align-items: center;
+}
+
 .navbar .nav-menu {
     height: 100%;
-    align-items: center;
+    
     display: flex;
+    align-items: center;
     padding: 0.5rem;
     padding-right: 1rem;
     color: var(--secondary--color);

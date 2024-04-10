@@ -32,7 +32,10 @@ const Navbar = () => {
       <div className='navbarContainer'>
         <div className='rightSide'>
           <div className='logo'>
-            <h1>LOGO</h1>
+            {/* <div > */}
+              <i class="fa fa-film" aria-hidden="true"></i>
+              Cinemix 
+            {/* </div> */}
           </div>
 
           <div className="search-container">

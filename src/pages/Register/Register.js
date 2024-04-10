@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css'; //Import the Font Awesome CSS
 import Navbar from "../../components/Navbar/Navbar";
 import "./Register.css";
-import { checkUser, createUser, signInUser } from "../../firebase";
+import { addusertodatabase, checkUser, createUser, signInUser } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { GoogleButton } from "react-google-button";
 import { UserAuth } from "../../Context/AuthContext";
+import GoogleImg from "../../Images/google.svg"
 
 export default function Register(){
   const [signInChecker, setSignInChecker] = useState(false)
@@ -62,7 +63,10 @@ function SignIn({setSignUp}) {
             </div>
             
             <button onClick={(e) => handleSubmit(e)}>signin</button>
-            <GoogleButton onClick={handleGoogleSignIn} />
+            <div className="inputContainer">
+              <img src={GoogleImg} alt="Google Image" className="googleImg" />
+              <button onClick={handleGoogleSignIn} className="googleButton" style={{marginBottom: '0px', borderTopLeftRadius: '0px', borderBottomLeftRadius: '0px'}}>Sign up with Google</button>
+            </div>
             <p className="message">Not registered? <span onClick={ (e) => setSignUp(true)}>Create an account</span></p>
           </form>
         </div>
@@ -80,6 +84,7 @@ function SignUp({setSignUp}) {
     e.preventDefault()
     await createUser(userName, email, password)
     console.log('user created')
+    // addusertodatabase()
   }
 
   const {googleSignIn} = UserAuth();
@@ -91,6 +96,8 @@ function SignUp({setSignUp}) {
       console.log(error);
     }
   }
+
+  console.log("hi")
 
   return(
     <>
@@ -115,7 +122,11 @@ function SignUp({setSignUp}) {
 
             <button onClick={(e) => handleSubmit(e)}>create</button>
 
-            <GoogleButton onClick={handleGoogleSignIn} />
+            <div className="inputContainer">
+              <img src={GoogleImg} alt="Google Image" className="googleImg" />
+              <button onClick={handleGoogleSignIn} className="googleButton" style={{marginBottom: '0px', borderTopLeftRadius: '0px', borderBottomLeftRadius: '0px'}}>Sign up with Google</button>
+            </div>
+
 
             <p className="message">Already registered? <span onClick={ () => setSignUp(false)}>Sign In</span></p>
           </form>

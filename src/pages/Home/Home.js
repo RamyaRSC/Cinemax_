@@ -4,8 +4,7 @@ import './Home.css';
 import { useNavigate } from "react-router-dom";
 import { handleSlide, getMovie, getPopularMovie } from "../Utils";
 import Carousel from 'react-bootstrap/Carousel';
-// import { setUserProperties } from "firebase/analytics";
-
+import Recommendation from "./recommendation.js";
 
 export default function Home(){
     const [animatedMovies, setAnimatedMovies] = useState ([])
@@ -15,38 +14,7 @@ export default function Home(){
 
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState('');
-
     const navigate = useNavigate()
-
-    // const handleGenreChange = event => {
-    //     setSelectedGenre(event.target.value);
-    //   };
-
-    //   const getMoviesByGenre = async () => {
-    //     try {
-    //       const selectedGenreMovies = await getMovie(selectedGenre);
-    //       switch (selectedGenre) {
-    //         case 'animated':
-    //           setAnimatedMovies(selectedGenreMovies);
-    //           break;
-    //         case 'action':
-    //           setActionMovies(selectedGenreMovies);
-    //           break;
-    //         case 'comedy':
-    //           setComedyMovies(selectedGenreMovies);
-    //           break;
-    //         default:
-    //           // Handle other genres or cases
-    //           break;
-    //       }
-    //     } catch (error) {
-    //       console.error("Error fetching movies by genre:", error);
-    //     }
-    //   };
-
-      // useEffect(() => {
-      //   getMoviesByGenre();
-      // }, [selectedGenre]);
 
     useEffect(() => {
         const fetchGenres = async () => {
@@ -59,9 +27,7 @@ export default function Home(){
           }
         };
         fetchGenres();
-    }, []);
-      
-    useEffect(() => {
+
         const fetchMovie = async () => {
             const animatedMoviesData = await getMovie(16);
             setAnimatedMovies(animatedMoviesData);
@@ -73,11 +39,9 @@ export default function Home(){
             setPopularMovies(popularMoviesData)
             const selectedGenreeee = await getMovie(selectedGenre);
             setSelectedGenre(selectedGenreeee);
-            // const genreData = await getGenre();
-            // setGenres(genreData);
         };
         fetchMovie()
-    },[])
+    }, []);
 
     const renderMovieRow = (movies, genre) => (
         <div className={`moviePosterHome ${genre}`} key={genre}>
@@ -120,11 +84,6 @@ export default function Home(){
             </Carousel>
         )
     }
-    // const handleGenreChange = event => {
-    //     setSelectedGenre(event.target.value);
-    //     // You can perform further actions based on the selected genre, such as fetching movies.
-    //   };
-    
 
     return(
         <>
@@ -132,18 +91,7 @@ export default function Home(){
         <div className="home">
             <div className="homeContainer">
                 <DivCarousel/>
-
-                {/* <label htmlFor="genre-select">Select Genre:</label>
-                <select id="genre-select" value={selectedGenre} onChange={handleGenreChange}>
-                    <option value="">-- Select Genre --</option>
-                    {genres.map(genres => (
-                    <option key={genres.id} value={genres.id}>{genres.name}</option>
-                    ))} */}
-                {/* </select> */}
-                {/* {renderMovieRow(selectedGenre, {selectedGenre})} */}
-                {/* {selectedGenre && renderMovieRow(getMoviesForSelectedGenre(selectedGenre), selectedGenre)} */}
-                {/* {selectedGenre && renderMovieRow(getMoviesForSelectedGenre(selectedGenre), selectedGenre)} */}
-
+                <Recommendation/>
                 {renderMovieRow(animatedMovies, "Animated")}
                 {renderMovieRow(comedyMovies, "Comedy")}
                 {renderMovieRow(actionMovies, "Action")}

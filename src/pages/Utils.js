@@ -51,5 +51,3 @@ export const handleSlide = (genre, direction, setScrollPositions) => {
     }));
 }
 };
-
-

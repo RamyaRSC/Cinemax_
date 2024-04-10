@@ -2,17 +2,20 @@ body {
     color: wheat;
     margin: 0;
     padding: 0;
+    /* padding-left: 500px; */
+}.playMovieContainer {
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 .videoPlayerContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .videoPlayerBG {
-    width: 98.5vw;
+    width: 83%;
     height: 400px;
     background-size: cover;
     position: absolute;
@@ -29,7 +32,8 @@ body {
 .videoInfoContainer {
     background-color: var(--primary--color);
     display: flex;
-    padding: 20px
+    padding: 20px;
+    align-items: center;
 }
 
 .videoPoster {
@@ -45,8 +49,33 @@ body {
 }
 
 .videoInfo p{
-    padding: 5px
+    padding: 0px;
+    margin: 5px;
 }
+
+.videoInfoGridContainer {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.videoInfoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* .ratingContainer div{
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+} */
 
 .castList {
     display: flex;
@@ -70,14 +99,15 @@ body {
 
 .castList .castImg {
     height: 180px;
-    width: 185px;
+    width: 180px;
     border-radius: 50%;
-    margin: 5px;;
+    margin: 5px;
+    object-fit: cover;
 }
 
 .recommendationContainer {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
     justify-content: center;
     margin: 15px;
@@ -94,3 +124,4 @@ body {
 .recommendationImg:hover {
     cursor: pointer;
 }
+
