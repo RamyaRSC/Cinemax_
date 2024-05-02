@@ -1,4 +1,21 @@
+// import { Notyf } from 'notyf';
+// import io from 'socket.io-client';
+// import * as bootstrap from 'bootstrap';
+// // import { useLocation } from 'react-router-dom';
+// // import { bootstrap } from 'bootstrap';
+// // import {Tooltip} from 'bootstrap';
+
 // const notyf = new Notyf({ duration: 1500, position: { x: 'center', y: 'top' } })
+// // const location = useLocation();
+// // location.pathname = "/watch-party"
+
+// // const {
+// //     children,
+// //     myLocation: { pathname },
+// //   } = this.props;
+  
+// //   let path = myLocation.pathname;
+  
 
 // function randomString(length, chars) {
 //     var result = '';
@@ -20,7 +37,6 @@
 //     return contentString
 // }
 
-
 // const append = message => {
 //     document.getElementById("messages-box").innerHTML = document.getElementById("messages-box").innerHTML + `<div class="col-12 mt-3" id="message"><span class="username" style="color: ${message.pfp}">${message.name}: </span>${message.content}</div>`
 // }
@@ -34,12 +50,27 @@
     
 // }
 
-// document.getElementById('roomCodeText').addEventListener('click', ()=>{
-//     let text = document.getElementById('roomCodeText').innerHTML
-//     navigator.clipboard.writeText(text).then(()=>{
-//         notyf.success("Copied to clipboard")
-//     })
+// const element = document.getElementById('roomCodeText');
+// if(element) {
+//     element.addEventListener('click',()=>{
+//         let text = document.getElementById('roomCodeText').innerHTML
+//         navigator.clipboard.writeText(text).then(()=>{
+//             notyf.success("Copied to clipboard")
+//         })
 // })
+// }
+
+// // .addEventListener('click', ()=>{
+// //     let text = document.getElementById('roomCodeText').innerHTML
+// //     navigator.clipboard.writeText(text).then(()=>{
+// //         notyf.success("Copied to clipboard")
+// //     })
+// // })
+
+// // const element = document.getElementById('someElement');
+// // if (element) {
+// //   element.addEventListener('click', handleClick);
+// // }
 
 // var videoPlayer = document.getElementById("video-player")
 // let lastcurrentime = 0;
@@ -282,7 +313,7 @@
 //     if(e.target.id == "roomLeaveButton") {
 //         videoPlayer.setAttribute("src", "C:\Users\anshu\Desktop\Anshul\Projects\local-party\src\test.mp4")
 //         socket.emit('disconnectUser', { roomCode: localStorage.getItem("roomCode"), name: localStorage.getItem("username") , pfp: localStorage.getItem("pfpUrl") })
-//         location.reload()
+//         window.location.reload()
 //     }
 //     if(e.target.id == "backButton") {
 //         joinPage.style.display = "none"

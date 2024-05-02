@@ -32,7 +32,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "globals": {
+      "location": false
+    }
   },
   "browserslist": {
     "production": [
@@ -45,5 +48,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "rules": {
+    "no-restricted-globals": ["error", "location"]
+  },
+  "globals": {
+    "location": false
   }
 }

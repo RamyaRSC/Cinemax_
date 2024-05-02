@@ -51,7 +51,7 @@ const Navbar = () => {
           <li><a href='/home'>Home</a></li>
           <li><a href='/movie'>Movie</a></li>
           <li><a href='/TvShow'>TV Show</a></li>
-          <li><a href='/watchparty'>Watch Party</a></li>
+          <li><a href='https://cinemaxwatchparty.netlify.app/'>Watch Party</a></li>
           <li>
             {signInChecker ? <Profile userName={userName}/> : <a href='/register'>SignIn</a>}
           </li>

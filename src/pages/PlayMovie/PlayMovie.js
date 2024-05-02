@@ -135,10 +135,7 @@ export default function PlayMovie() {
     function handleUserRating(value) {
         setSelectedRating(value);
         let obj = {
-            // "Rating": value,
             "Genre": movieDetail.genres.map(genre => genre.name).join(', '),
-            // "MovieName": movieDetail.title,
-            // "MovieID": id,
             "MovieDetails": {"id": id, "title": movieDetail.title, "rating": value}
         }
         // console.log(obj)

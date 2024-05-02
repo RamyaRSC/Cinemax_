@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Movie from './pages/Movie/Movie.js'
 import Register from './pages/Register/Register.js'
@@ -21,7 +21,9 @@ export default function App(){
           <Route path="/home/:id?" element={<PlayMovie/>}/>
           <Route path="/movie" element={<Movie />} />
           <Route path="/tvshow" element={<TvShow />} />
-          <Route path="/watchparty" element={<WatchParty />} />
+          {/* <Route path="/watchparty" element={<WatchParty />} /> */}
+          {/* <Route path="/watchparty" element={<WatchParty />} /> */}
+          {/* Redirect to the external URL */}
           <Route path="/register" element={<Register />} />
           <Route path="/searchResult/:query?" element={<SearchResult />} />
           <Route path="*" element={<NoPage />} />
