@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css'; //Import the Font Awesome CSS
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import the Font Awesome CSS
 import './NavbarStyles.css';
 
 import { checkUser, logOutUser, getUserData } from '../../firebase';
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [signInChecker, setSignInChecker] = useState(false)
@@ -31,11 +31,9 @@ const Navbar = () => {
     <div className='navbar'>
       <div className='navbarContainer'>
         <div className='rightSide'>
-          <div className='logo'>
-            {/* <div > */}
+          <div className='logo' onClick={() => window.location.href = "/home"}>
               <i class="fa fa-film" aria-hidden="true"></i>
-              Cinemix 
-            {/* </div> */}
+              Cinemix
           </div>
 
           <div className="search-container">
@@ -47,8 +45,9 @@ const Navbar = () => {
         </div>
         </div>
 
-      <div className='leftSide'>
-        <ul className={nav ? 'nav-menu active' : 'nav-menu'}>
+      <div className='leftSide' >
+        <ul className={nav ? 'nav-menu active' : 'nav-menu'} >
+
           <li><a href='/home'>Home</a></li>
           <li><a href='/movie'>Movie</a></li>
           <li><a href='/TvShow'>TV Show</a></li>
@@ -75,13 +74,13 @@ function Profile({userName}) {
     <div className="profile">
       <div className='userName'>{userName}</div>
       <i class="fa fa-user" aria-hidden="true" onClick={() => setProfileButtonClicked(true)}></i>
-      {profileButtonClicked ? <div className='sidePanelbg'onClick={() => setProfileButtonClicked(false)}/> : ''}
-      {profileButtonClicked ? 
-      <div className='sidePanel'>
-        <div className='userName'>{userName}</div>
-        <button onClick={()=> logOutUser()}>Log Out</button>
-      </div> 
-      : ''}
+      {profileButtonClicked && <div className='sidePanelbg' onClick={() => setProfileButtonClicked(false)} />}
+      {profileButtonClicked && (
+        <div className='sidePanel'>
+          <div className='userName' >{userName}</div>
+          <button className='logout' onClick={() => logOutUser()}>Log Out</button>
+        </div>
+      )}
     </div>
   )
 }

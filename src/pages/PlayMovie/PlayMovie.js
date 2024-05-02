@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import Navbar from "../../components/Navbar/Navbar";
-import './PlayMovie.css'
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 import { RingLoader } from 'react-spinners/RingLoader';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Rating from 'react-rating';
-// import { set } from 'firebase/database';
 import { userMovieData } from '../../firebase';
-// import 'react-spinners/RingLoader.css';
+import { API_KEY } from '../Utils';
+
+import './PlayMovie.css';
 
 export default function PlayMovie() {
     const [movieDetail, setMovieDetail] = useState();
@@ -23,7 +23,7 @@ export default function PlayMovie() {
     useEffect(() => {
         const getMovie = async (movieID) => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=55eeda8279baa495342e20191faf8cf7`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -41,7 +41,7 @@ export default function PlayMovie() {
     useEffect(() => {
         const getSimilarRecommendations = async (movieID) => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=55eeda8279baa495342e20191faf8cf7`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=${API_KEY}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -53,12 +53,10 @@ export default function PlayMovie() {
             }
         };
         getSimilarRecommendations(id)
-    })
 
-    useEffect(() => {
         const getRecommendations = async (movieID) => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/recommendations?api_key=55eeda8279baa495342e20191faf8cf7`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/recommendations?api_key=${API_KEY}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -75,7 +73,7 @@ export default function PlayMovie() {
     useEffect(() => {
         const fetchCredits = async () => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=55eeda8279baa495342e20191faf8cf7`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`);
                 const data = await response.json();
                 setCredits(data);
                 setLoading(false);

@@ -4,7 +4,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./Register.css";
 import { addusertodatabase, checkUser, createUser, signInUser } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { GoogleButton } from "react-google-button";
 import { UserAuth } from "../../Context/AuthContext";
 import GoogleImg from "../../Images/google.svg"
 

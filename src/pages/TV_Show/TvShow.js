@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import './TvShow.css';
 import { useNavigate } from "react-router-dom";
-import { handleSlide } from "../Utils";
+import { handleSlide, API_KEY } from "../Utils";
 
 export default function TvShow(){
-    const [tvShowList, setTvShowList] = useState([])
+    // const [tvShowList, setTvShowList] = useState([])
     const [mysteryTvShows, setMysteryTvShows] = useState ([])
     const [realityTvShows, setRealityTvShows] = useState([])
     const [dramaTvShows, setDramaTvShows] = useState([])
@@ -14,7 +14,7 @@ export default function TvShow(){
     useEffect(() => {
         const getTvShow = async (genre, setTvShowList) => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=55eeda8279baa495342e20191faf8cf7&with_genres=${genre}`);
+                const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${genre}`);
                 const data = await response.json();
                 setTvShowList(data.results);
             } catch (error) {
@@ -28,7 +28,7 @@ export default function TvShow(){
         // getTvShow();
     },[])
 
-    console.log(tvShowList)
+    // console.log(tvShowList)
 
     const renderTvShowRow = (tvShows, genre) => (
         <div className={`tvShowPoster ${genre}`} key={genre}>

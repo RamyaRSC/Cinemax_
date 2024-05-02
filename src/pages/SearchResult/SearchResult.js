@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams, useNavigate } from "react-router-dom";
+import { API_KEY } from "../Utils";
 
 import "./SearchResult.css";
 
@@ -14,7 +15,7 @@ export default function SearchResult() {
 
     const fetchInitialData = () => {
         setLoading(true);
-        fetch(`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&page=${pageNum}&api_key=55eeda8279baa495342e20191faf8cf7`)
+        fetch(`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&page=${pageNum}&api_key=${API_KEY}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -33,7 +34,7 @@ export default function SearchResult() {
     }
 
     const fetchNextPageData = () => {
-        fetch(`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&page=${pageNum}&api_key=55eeda8279baa495342e20191faf8cf7`)
+        fetch(`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}&page=${pageNum}&api_key=${API_KEY}`)
             .then((response) => response.json())
             .then((response) => {
                 if (data?.results) {

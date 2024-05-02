@@ -132,7 +132,7 @@ onSnapshot(colRefToUser, (snapshot) => {
     snapshot.docs.forEach((doc) => {
         data.push({docID: doc.id, ...doc.data()})
     })
-    console.log("all data",data)
+    // console.log("all data",data) //all users data
 })
 
 async function checkIfUserExists(uid, movieData) {
