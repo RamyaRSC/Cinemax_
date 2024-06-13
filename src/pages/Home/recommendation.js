@@ -56,11 +56,9 @@ function Recommendation() {
 
     let topGenres = []
     if (userData  !== null && userData !== undefined) {
-        // console.log("User data:", userData); // Output: { Genre: { Adventure: 5, Action: 3, Comedy: 2 } }
         let myGenres = Object.keys(userData.Genre); // Get the keys (genre names) from the userData.Genre object
         myGenres.sort((a, b) => userData.Genre[b] - userData.Genre[a]);  // Sort the genres array based on the values in descending order
         topGenres = myGenres.slice(0, 2); // Get the names of the 2 elements with maximum values
-        // console.log("Top genres:", topGenres); // Output: ["Adventure", "Action"]   
     }
     
     function convertPreferencesToIds(preferences) {
@@ -69,10 +67,7 @@ function Recommendation() {
           return genre ? genre.id : null;
         });
       }
-    // console.log(topGenres)
     const preferenceIds = convertPreferencesToIds(topGenres);
-    // console.log("finaly",preferenceIds);
-
 
     function filterMoviesByGenreIds(movies, genreIds) {
         return movies.filter(movie =>

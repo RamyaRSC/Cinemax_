@@ -125,8 +125,6 @@ function SignUp({setSignUp}) {
               <img src={GoogleImg} alt="Google Image" className="googleImg" />
               <button onClick={handleGoogleSignIn} className="googleButton" style={{marginBottom: '0px', borderTopLeftRadius: '0px', borderBottomLeftRadius: '0px'}}>Sign up with Google</button>
             </div>
-
-
             <p className="message">Already registered? <span onClick={ () => setSignUp(false)}>Sign In</span></p>
           </form>
         </div>

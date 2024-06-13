@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { handleSlide, API_KEY } from "../Utils";
 
 export default function TvShow(){
-    // const [tvShowList, setTvShowList] = useState([])
     const [mysteryTvShows, setMysteryTvShows] = useState ([])
     const [realityTvShows, setRealityTvShows] = useState([])
     const [dramaTvShows, setDramaTvShows] = useState([])
@@ -27,8 +26,6 @@ export default function TvShow(){
         getTvShow(18, setDramaTvShows); // Drama TvShows (Genre ID: 28)
         // getTvShow();
     },[])
-
-    // console.log(tvShowList)
 
     const renderTvShowRow = (tvShows, genre) => (
         <div className={`tvShowPoster ${genre}`} key={genre}>

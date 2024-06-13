@@ -25,8 +25,7 @@ export default function Movie(){
             } catch (error) {
                 console.error("Error fetching movies:", error);
                 setLoading(false); // Set loading to false in case of error
-            }
-            
+            }    
         };
         fetchMovie();
     },[]);

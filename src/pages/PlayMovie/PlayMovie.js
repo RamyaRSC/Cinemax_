@@ -28,7 +28,6 @@ export default function PlayMovie() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();  
-                // console.log(data)
                 setMovieDetail(data)
                 console.log('Genres:', data.genres.map(genre => genre.name).join(', '));
             } catch (error) {
@@ -46,7 +45,6 @@ export default function PlayMovie() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();  
-                // console.log(data)
                 setSimilarRecommendationDetail(data.results)
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -61,7 +59,6 @@ export default function PlayMovie() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();  
-                // console.log(data)
                 setRecommendationDetail(data.results)
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -93,8 +90,6 @@ export default function PlayMovie() {
     };
     
     const handleRating = (value) => {
-        // console.log("randome");
-        // setSelectedRating(value);
         switch (value) {
             case 0.5:
                 setRatingStatement("Appalling");
@@ -138,7 +133,6 @@ export default function PlayMovie() {
             "Genre": movieDetail.genres.map(genre => genre.name).join(', '),
             "MovieDetails": {"id": id, "title": movieDetail.title, "rating": value}
         }
-        // console.log(obj)
         userMovieData(obj)
     }
 

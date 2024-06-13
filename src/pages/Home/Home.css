@@ -42,7 +42,6 @@
 .controls {
     display: flex;
     justify-content: space-evenly;
-    /* margin-top: 10px; */
 }
 
 .controls button{
@@ -55,13 +54,6 @@
     font-weight: 400;
     background-color: var(--secondary--color);
 }
-
-/* .carouselslide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-} */
 
 .carousel-indicators {
     display: flex;
@@ -103,7 +95,6 @@
 
 .moviePosterHome img{
     height: 40vh;
-    /* width: 20%; */
     padding: 1rem;
     transition: transform 0.2s ease-in-out;
     border-radius: 20px;
@@ -127,14 +118,12 @@
 
 @media only screen and (max-width: 1400px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 7%;
     }
 }
 
 @media only screen and (max-width: 1300px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 5%;
     }
 }
@@ -142,14 +131,12 @@
 
 @media only screen and (max-width: 1250px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 3%;
     }
 }
 
 @media only screen and (max-width: 1200px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 1%;
     }
 }
@@ -160,7 +147,6 @@
     }
 
     .carousel-indicators {
-        /* display: none; */
         margin-left: 25%;
     }
 }
@@ -173,14 +159,12 @@
 
 @media only screen and (max-width: 900px) {
     .poster {
-        /* display: none; */
         width: 500px
     }
 }
 
 @media only screen and (max-width: 700px) {
     .movie {
-        /* display: none; */
         flex-direction: column-reverse;
     }
 
@@ -197,7 +181,6 @@
     }
 
     .carousel-indicators {
-        /* display: none; */
         margin-left: 17%;
     }
 
@@ -205,21 +188,18 @@
 
 @media only screen and (max-width: 670px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 15%;
     }
 }
 
 @media only screen and (max-width: 600px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 10%;
     }
 }
 
 @media only screen and (max-width: 560px) {
     .carousel-indicators {
-        /* display: none; */
         margin-left: 7%;
     }
 }

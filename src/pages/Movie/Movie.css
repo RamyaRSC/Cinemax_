@@ -35,7 +35,6 @@ body{
 
 .moviePoster img{
     height: 40vh;
-    /* width: 20%; */
     padding: 1rem;
     transition: transform 0.2s ease-in-out;
     border-radius: 20px;

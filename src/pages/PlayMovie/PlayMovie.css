@@ -2,7 +2,6 @@ body {
     color: wheat;
     margin: 0;
     padding: 0;
-    /* padding-left: 500px; */
 }.playMovieContainer {
     padding-left: 100px;
     padding-right: 100px;
@@ -56,7 +55,6 @@ body {
 
 .videoInfoGridContainer {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
 }
 
@@ -71,12 +69,6 @@ body {
     flex-direction: column;
     padding: 20px;
 }
-
-/* .ratingContainer div{
-    position: absolute; 
-    width: 100%;
-    height: 100%;
-} */
 
 .castList {
     display: flex;
@@ -125,4 +117,3 @@ body {
 .recommendationImg:hover {
     cursor: pointer;
 }
-

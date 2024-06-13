@@ -21,9 +21,6 @@ export default function App(){
           <Route path="/home/:id?" element={<PlayMovie/>}/>
           <Route path="/movie" element={<Movie />} />
           <Route path="/tvshow" element={<TvShow />} />
-          {/* <Route path="/watchparty" element={<WatchParty />} /> */}
-          {/* <Route path="/watchparty" element={<WatchParty />} /> */}
-          {/* Redirect to the external URL */}
           <Route path="/register" element={<Register />} />
           <Route path="/searchResult/:query?" element={<SearchResult />} />
           <Route path="*" element={<NoPage />} />

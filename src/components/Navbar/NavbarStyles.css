@@ -4,12 +4,8 @@
 }
 
 .navbar {
-    /* width: 100%; */
-    /* height: auto; */
     z-index: 10;
-    /* overflow: hidden; */
     background-color: rgba(22, 32, 41, 0.74);
-    /* align-items: center; */
     color: var(--secondary--color)
 }
 
